@@ -1,4 +1,8 @@
 import './paginacion.css';
+import { useState, useEffect } from "react";
+
+import { getCharacters } from "../../reducers/characterGallery";
+import { useAppDispatch } from "../../redux/hooks";
 
 /**
  * Componente que contiene los botones para paginar
@@ -8,11 +12,12 @@ import './paginacion.css';
  * 
  * @returns un JSX element 
  */
-const Paginacion = () => {
+
+const Paginacion = ({prev, next, page}) => {
 
     return <div className="paginacion">
-        <button disabled={true} className={"primary"}>Anterior</button>
-        <button disabled={false} className={"primary"}>Siguiente</button>
+        <button disabled={page > 1 ? false : true} className={"primary"} onClick = {prev}>Anterior</button>
+        <button disabled={false} className={"primary"} onClick = {next}>Siguiente</button>
     </div>
 }
 

@@ -1,39 +1,44 @@
 # ctd-esp-fe1-final
+
 Examen Final de Frontend IV
 
 ## Indice
-* [Requisitos](#requisitos)
-  * [Condiciones mínimas de aprobación](#condiciones-mínimas-de-aprobación)
-  * [Aspectos que modifican la valoración final de la nota](#aspectos-que-modifican-la-valoración-final-de-la-nota)
-* [Funcionalidades](#funcionalidades)
-  * [Funcionalidades obligatorias](#funcionalidades-obligatorias)
-  * [Funcionalidades extras](#funcionalidades-extras)
-  * [Resultado final](#resultado-final)
-* [Desarrollo](#desarrollo)
-  * [Iniciando la App](#iniciando-la-app)
-  * [Dependencias](#dependencias)
-  * [Dependencias de Desarrollo](#dependencias-de-desarrollo)
-  * [Componentes de UI](#componentes-de-ui)
-* [Entrega](#entrega)
-  * [Fecha de Entrega](#fecha-de-entrega)
-  * [Formato de Entrega](#formato-de-entrega)
-* [Guía para comenzar](#guía-para-comenzar)
-  * [Paso 0 - Instalación](#paso-0---instalación)
-  * [Paso 1 - Configuración de Redux](#paso-1---configuración-de-redux)
-  * [Paso 2 - Configuración de Thunk](#paso-2---configuración-de-thunk)
-  * [Paso 3 - Configuración de Saga](#paso-3---configuración-de-saga)
-  * [Paso 4 - Tipado de los componentes existentes](#paso-4---tipado-de-los-componentes-existentes)
-  * [Paso 5 - Modelado](#paso-5---modelado)
-  * [Paso 6 - Creación del estado y el/los reducer](#paso-6---creación-del-estado-y-ellos-reducer) 
-  * [Paso 7 - Armado de la UI](#paso-7---armado-de-la-ui)
-  * [Paso 8 - Integración](#paso-8---integración) 
 
+* [Requisitos](#requisitos)
+   * [Condiciones mínimas de aprobación](#condiciones-mínimas-de-aprobación)
+   * [Aspectos que modifican la valoración final de la nota](#aspectos-que-modifican-la-valoración-final-de-la-nota)
+
+* [Funcionalidades](#funcionalidades)
+   * [Funcionalidades obligatorias](#funcionalidades-obligatorias)
+   * [Funcionalidades extras](#funcionalidades-extras)
+   * [Resultado final](#resultado-final)
+
+* [Desarrollo](#desarrollo)
+   * [Iniciando la App](#iniciando-la-app)
+   * [Dependencias](#dependencias)
+   * [Dependencias de Desarrollo](#dependencias-de-desarrollo)
+   * [Componentes de UI](#componentes-de-ui)
+
+* [Entrega](#entrega)
+   * [Fecha de Entrega](#fecha-de-entrega)
+   * [Formato de Entrega](#formato-de-entrega)
+
+* [Guía para comenzar](#guía-para-comenzar)
+   * [Paso 0 - Instalación](#paso-0---instalación)
+   * [Paso 1 - Configuración de Redux](#paso-1---configuración-de-redux)
+   * [Paso 2 - Configuración de Thunk](#paso-2---configuración-de-thunk)
+   * [Paso 3 - Configuración de Saga](#paso-3---configuración-de-saga)
+   * [Paso 4 - Tipado de los componentes existentes](#paso-4---tipado-de-los-componentes-existentes)
+   * [Paso 5 - Modelado](#paso-5---modelado)
+   * [Paso 6 - Creación del estado y el/los reducer](#paso-6---creación-del-estado-y-ellos-reducer)
+   * [Paso 7 - Armado de la UI](#paso-7---armado-de-la-ui)
+   * [Paso 8 - Integración](#paso-8---integración)
 
 ## Requisitos
 
 Es indispensable clonar este proyecto en un repositorio privado, para poder trabajar de forma *individual*. No se aceptarán proyectos que se hayan realizado sin partir de este template. Para eso deberás crear un repositorio con el nombre "ctd-esp-fe1-final" en tu cuenta de Github y luego seguir los siguientes pasos en tu terminal
 
-```
+```sh
 # clona el repositorio del final en tu computadora
 git clone https://github.com/DH-Esp-Frontend/ctd-esp-fe1-final 
 
@@ -48,7 +53,9 @@ git remote add origin https://github.com/<tuusuario>/ctd-esp-fe1-final
 
 # Sube el template inicial a tu repositorio de github
 git push -u origin main
+
 ```
+
 No olvides agregar los permisos a las cuentas mencionadas en el [Formato de Entrega](#formato-de-entrega) antes de la [Fecha de Entrega](#fecha-de-entrega)!
 
 ### Condiciones mínimas de aprobación
@@ -70,19 +77,19 @@ Los siguientes aspectos son extras al requisito mínimo de aprobación que será
     TypeScript
       * Será tenido en cuenta uso de Typescript más allá del tipado de las props de componentes, en especial para el caso de funciones que desarrollen lógica reutilizable, de las actions y de los reducers.
       * Se valorará la reutilización de tipos comunes que se repiten a lo largo del proyecto, especialmente mediante la reutilización de interfaces.
-
+    
     Documentación
       * Se valorará el correcto uso de la documentación en todas las funciones y componentes.
-
+    
     Validaciones
       * Se valorará el agregado de validaciones de flujos alternativos al normal y el manejo de errores en las distintas funcionalidades implementadas.
-
+    
     Redux
       * Se valorará el uso correcto de Redux para el almacenamiento del estado completo de la aplicación.
-
+    
     Thunk o Saga
       * Se valorará el uso correcto de Thunk o Saga para la utilización de cada función asincrónica dentro de cada funcionalidad.
-
+    
     Buenas Prácticas
       * Se prestará especial atención al uso de buenas prácticas, reutilización de componentes y funcionalidades comunes, y renderizado dinámico.
 
@@ -91,28 +98,27 @@ Los siguientes aspectos son extras al requisito mínimo de aprobación que será
 ### Funcionalidades obligatorias
 
 Las siguientes funcionalidades son requisitos mínimos necesarios para la aprobación del final y es fundamental que funcionen correctamente.
- 
+
 * La aplicación deberá contar con dos páginas:
 
-  1 - La página de inicio que debe contar con:
+   1 - La página de inicio que debe contar con:
 
-          * Panel de filtros:
-            * Contendrá un input en donde el usuario pueda ingresar cualquier texto que desee para hacer un filtro sobre los personajes.
-            * Si el usuario borra el texto ingresado, se deberá mostrar el estado inicial, es decir la búsqueda sin filtro.
-            * Se deberá incluir un boton de "Limpiar filtros", el cual deberá borrar el texto dentro del input y mostrar el estado inicial, es decir la búsqueda sin filtro.
+           * Panel de filtros:
+             * Contendrá un input en donde el usuario pueda ingresar cualquier texto que desee para hacer un filtro sobre los personajes.
+             * Si el usuario borra el texto ingresado, se deberá mostrar el estado inicial, es decir la búsqueda sin filtro.
+             * Se deberá incluir un boton de "Limpiar filtros", el cual deberá borrar el texto dentro del input y mostrar el estado inicial, es decir la búsqueda sin filtro.
+       
+           * Listado de personajes
+             * Deberá mostrar los personajes, que estarán representados por tarjetas con información sobre cada uno de ellos.
+             * Como máximo se deben mostrar en pantalla 20 tarjetas de personajes por página.
+             * Se deberá poder marcar y desmarcar a cada personaje como favorito desde su tarjeta individual, teniendo que persistir ese estado en la aplicación.
+             * Se deberá poder diferenciar si un personaje se encuentra marcado como favorito o no.
 
-          * Listado de personajes
-            * Deberá mostrar los personajes, que estarán representados por tarjetas con información sobre cada uno de ellos.
-            * Como máximo se deben mostrar en pantalla 20 tarjetas de personajes por página.
-            * Se deberá poder marcar y desmarcar a cada personaje como favorito desde su tarjeta individual, teniendo que persistir ese estado en la aplicación.
-            * Se deberá poder diferenciar si un personaje se encuentra marcado como favorito o no.
+   2 - La página de favoritos que deberá cumplir con los siguientes requisitos:
 
-  2 - La página de favoritos que deberá cumplir con los siguientes requisitos:
-
-            *  Todos los personaje marcados como favoritos, deberán aparecer dentro del listado de favoritos en la segunda página de la aplicación.
-            *  Si el usuario desmarca un personaje como favorito el mismo deberá desaparecer del listado de favoritos.
-            *  Un personaje que haya sido desmarcado de los favoritos, podrá ser marcado nuevamente desde la pantalla de inicio y deberá aparecer en el listado otra vez.
-    
+             *  Todos los personaje marcados como favoritos, deberán aparecer dentro del listado de favoritos en la segunda página de la aplicación.
+             *  Si el usuario desmarca un personaje como favorito el mismo deberá desaparecer del listado de favoritos.
+             *  Un personaje que haya sido desmarcado de los favoritos, podrá ser marcado nuevamente desde la pantalla de inicio y deberá aparecer en el listado otra vez.
 
 ### Funcionalidades extras
 
@@ -120,7 +126,7 @@ Los siguientes aspectos son extras al requisito mínimo de aprobación que será
 
     * La página de favoritos:
       * Podrá contar con un botón de "Eliminar todos", que deberá desmarcar todos los personajes del listado de favoritos y los mismos no deberán aparecer marcados como favoritos en la página principal.
-
+    
     * Realización de una tercer página de vista de cada personaje:
     Al hacer click sobre un personaje deberá redirigirnos a está página.
         * Va a requerir de la invocación de la API de [Episodios](https://rickandmortyapi.com/documentation/#get-multiple-episodes) de Rick and Morty.
@@ -131,7 +137,7 @@ Los siguientes aspectos son extras al requisito mínimo de aprobación que será
 ### Resultado final
 
     Te dejamos un video como ejemplo de cómo debería funcionar tu aplicación, en la carpeta public
-    
+
 ## Desarrollo
 
 ### Iniciando la App
@@ -149,6 +155,7 @@ Podemos iniciar nuestra aplicación con el comando
 Se utilizara la version de React 18.2.0, junto con la version 5.0.1 de React Scripts. React-Router ya se encuentra instalado y configurado para la navegación.
 
 Solo se podrán instalar las siguientes dependencias:
+
 * Redux (incluida @reduxjs/toolkit)
 * Typescript
 * Saga (Si no queremos usar Thunk de @reduxjs/toolkit)
@@ -160,16 +167,20 @@ Solo se podrán instalar las siguientes dependencias:
 Se podrán hacer uso de las siguientes dependencias adicionales para desarrollo (devDependencies), pero las mismas *no* modificaran la nota en forma positiva, ni son requisitos para la aprobación. Solo se brinda la posibilidad de usarlas, para aquel que sabe lo que esta haciendo y se siente cómodo con ellas.
 
 * Redux Devtools Extension
-  * Esta herramienta fue utilizada en clase, para visualizar el estado de Redux. Puede ser útil para debuggear y solucionar algunos problemas de nuestro código. 
-  
+
+   * Esta herramienta fue utilizada en clase, para visualizar el estado de Redux. Puede ser útil para debuggear y solucionar algunos problemas de nuestro código.
+
 * Prop-Types
-  * Esta herramienta fue utilizada en clase, para validar el tipo de las propiedades en tiempo de ejecución. Puede ser para evitar algunos problemas de nuestro código.
-  
+
+   * Esta herramienta fue utilizada en clase, para validar el tipo de las propiedades en tiempo de ejecución. Puede ser para evitar algunos problemas de nuestro código.
+
 * ESLint
-  * Esta herramienta NO fue utilizada en clase, y se verá en Frontend V. Pero si se encuentran cómodos utilizandola, se encuentra permitida la configuración de eslint. 
-  
+
+   * Esta herramienta NO fue utilizada en clase, y se verá en Frontend V. Pero si se encuentran cómodos utilizandola, se encuentra permitida la configuración de eslint.
+
 * Jest y Testing Library
-  * El uso de Testing esta permitido para verificar las funcionalidades. Testing es un tema de Frontend V, pero se abre la posibilidad de entregar el código final con casos de prueba. 
+
+   * El uso de Testing esta permitido para verificar las funcionalidades. Testing es un tema de Frontend V, pero se abre la posibilidad de entregar el código final con casos de prueba.
 
 ### Componentes de UI
 
@@ -177,6 +188,7 @@ El proyecto cuenta con componentes desarrollados en JavaScript, que **solo** deb
 La finalidad de los mismos es facilitar el desarrollo, otorgando componentes que se encuentran correctamente estileados.
 
 Lista de componentes:
+
 * [src/componentes/layout/encabezado.componente.jsx](src/componentes/layout/encabezado.componente.jsx) - Encabezado requerido para cada una de las páginas. Facilita la navegación
 * [src/componentes/personajes/filtros.componente.tsx](src/componentes/personajes/filtros.componente.tsx) - Componente con el input text para realizar el filtrado
 * [src/componentes/personajes/grilla-personajes.componente.jsx](src/componentes/personajes/grilla-personajes.componente.jsx) - Grilla de personajes para la pagina de inicio
@@ -188,12 +200,11 @@ Lista de componentes:
 
 ### Fecha de Entrega
 
-Solo se admitirán entregas recibidas hasta el cierre de la clase 24, clase de Evaluación Final. 
+Solo se admitirán entregas recibidas hasta el cierre de la clase 24, clase de Evaluación Final.
 
 ### Formato de Entrega
 
-Se aceptará la entrega mediante la submisión de la URL de un repositorio de Github Privado, que haya compatido acceso a las siguientes cuentas: 
-
+Se aceptará la entrega mediante la submisión de la URL de un repositorio de Github Privado, que haya compatido acceso a las siguientes cuentas:
 
 El link al Google Form para la submisión será enviado por el profesor a cargo de la comisión.
 
@@ -219,11 +230,11 @@ Y finalmente instalar Saga (Si lo preferis en vez de Thunk)
 
 `npm install redux-saga@1.2.2`
 
-### Paso 1 - Configuración de Redux 
+### Paso 1 - Configuración de Redux
 
 Configuracion de la Store
 
-``` store.ts
+```store.ts
 import { configureStore} from "@reduxjs/toolkit";
 
 const store = configureStore({
@@ -235,21 +246,23 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export default store;
-``` 
+```
 
 Luego en el App.jsx deberás configurar el Provider
-``` index.ts
+
+```index.ts
   import {Provider} from "react-redux";
 
   <Provider store={store}>
     ... 
   </Provider>
 ```
+
 ### Paso 2 - Configuración de Saga
 
 Este paso es opcional, solo lo necesitamos si vamos a utilizar Saga y no Thunk.
 
-``` store.ts
+```store.ts
 // Importamos el saga de redux-saga
 import {createSagaMiddleware} from "redux-saga";
 
@@ -270,36 +283,39 @@ export const store = configureStore(
 ```
 
 ### Paso 3 - Tipado de los componentes existentes
+
 Cómo te mencionamos anteriormente, el proyecto cuenta con algunos componentes que te recomendamos utilizar, pero recordar que debes tiparlos con TypeScript.
+
 ### Paso 4 - Modelado
 
-Con Redux, TypeScript y Thunk (o Saga!) ya configurados, podes proceder al armado de las interfaces del modelo. Es decir, crear las interfaces de los objetos que vas a usar en el proyecto. 
-Para esto, te recomendamos que visualizas el diseño final, e identifiques los campos, variables y tipos que vas a necesitar en tus objetos para tiparlos correctamente. 
-No hace falta que sean perfectos en esta etapa, los podrás ajustar después, pero van a ser de gran ayuda para arrancar a trabajar! 
+Con Redux, TypeScript y Thunk (o Saga!) ya configurados, podes proceder al armado de las interfaces del modelo. Es decir, crear las interfaces de los objetos que vas a usar en el proyecto.
+Para esto, te recomendamos que visualizas el diseño final, e identifiques los campos, variables y tipos que vas a necesitar en tus objetos para tiparlos correctamente.
+No hace falta que sean perfectos en esta etapa, los podrás ajustar después, pero van a ser de gran ayuda para arrancar a trabajar!
 
 ### Paso 5 - Creación del estado y el/los reducer
 
-Es importante poder abstraernos un poco de la creación de la UI, y del HTML, para pensar en que funcionalidades queremos construir. 
-En esta etapa podemos identificar los eventos que muestra aplicación debe gestionar y que valores deben ser almacenados en el estado. 
-Por ejemplo, vamos a necesitar almacenar los personajes que nos retorne la API, junto con el estado de la petición. 
+Es importante poder abstraernos un poco de la creación de la UI, y del HTML, para pensar en que funcionalidades queremos construir.
+En esta etapa podemos identificar los eventos que muestra aplicación debe gestionar y que valores deben ser almacenados en el estado.
+Por ejemplo, vamos a necesitar almacenar los personajes que nos retorne la API, junto con el estado de la petición.
 
 Nota: No olvides agregar tu o tus reducers a la store!
 
-### Paso 6 - Armado de la UI 
-Con el modelo ya creado, y nuestro reducer listo para ser utilizado, podemos proceder al armado de la UI básica. 
+### Paso 6 - Armado de la UI
 
-Ya estarías en condiciones de armar la página principal, colocando el buscador, y armar una grilla que utilize las Tarjetas del personaje y el componente de paginacion. 
+Con el modelo ya creado, y nuestro reducer listo para ser utilizado, podemos proceder al armado de la UI básica.
 
-Para probar esta pantalla, podes llamar a la API, directamente desde tu componente, mediante useEffect y utilizando useState, pero no olvides que deberás utilizar al menos una vez una llamada asíncronica por medio de Thunk o Saga como condición mínima para aprobar. 
-Te recomendamos dejar un //TODO para no olvidar modificar está función. 
+Ya estarías en condiciones de armar la página principal, colocando el buscador, y armar una grilla que utilize las Tarjetas del personaje y el componente de paginacion.
 
-Con la grilla funcionando adecuadamente, podes proceder al armado del listado de favoritos. Para ello, te recomendamos utilizar la misma API, para probar el renderizado de la UI. 
-Una vez que muestres personajes en el listado de favoritos, ya podes colocar un //TODO para acordarte de integrar esto con el estado de Redux correspondiente. 
+Para probar esta pantalla, podes llamar a la API, directamente desde tu componente, mediante useEffect y utilizando useState, pero no olvides que deberás utilizar al menos una vez una llamada asíncronica por medio de Thunk o Saga como condición mínima para aprobar.
+Te recomendamos dejar un //TODO para no olvidar modificar está función.
 
-### Paso 7 - Integración 
-Ahora sí, podemos ir componente a componente integrando con Redux por medio de los hooks de useSelector y dispatch, para interactuar con el estado 
+Con la grilla funcionando adecuadamente, podes proceder al armado del listado de favoritos. Para ello, te recomendamos utilizar la misma API, para probar el renderizado de la UI.
+Una vez que muestres personajes en el listado de favoritos, ya podes colocar un //TODO para acordarte de integrar esto con el estado de Redux correspondiente.
+
+### Paso 7 - Integración
+
+Ahora sí, podemos ir componente a componente integrando con Redux por medio de los hooks de useSelector y dispatch, para interactuar con el estado
 
 *Tip: Recordá que podes visualizar que está sucediendo en el estado a través de la extensión del Chrome ReduxDevTools y si es necesario debuggear para encontrar los posibles errores.*
 
-Mucha suerte y éxitos! 
-
+Mucha suerte y éxitos!

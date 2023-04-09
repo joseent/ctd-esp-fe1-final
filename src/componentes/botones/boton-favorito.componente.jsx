@@ -1,4 +1,6 @@
 import './boton-favorito.css';
+import { useAppDispatch } from "../../redux/hooks";
+import {toggleFavorite} from '../../reducers/characterGallery'
 /**
  * Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo
  * 
@@ -7,10 +9,17 @@ import './boton-favorito.css';
  * 
  * @returns un JSX element 
  */
-const BotonFavorito = ({esFavorito, onClick}) => {
+const BotonFavorito = ({esFavorito,onClick}) => {
+
     const src = esFavorito ? "/imagenes/star-filled.png" : "/imagenes/star.png"
 
-    return <div className="boton-favorito">
+    const dispatch = useAppDispatch();
+
+    const handleToggleFavorite = (favorite) => {
+        dispatch(toggleFavorite(favorite));
+      };
+
+    return <div className="boton-favorito" onClick={()=> handleToggleFavorite(onClick)}  >
         <img src={src} alt={"favorito"} />
     </div>
 }
