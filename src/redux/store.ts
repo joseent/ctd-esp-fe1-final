@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
 import characterGalleryReducer from '../reducers/characterGallery'
-import addFavorites from '../reducers/favoritesCharReducer'
 
 export const store = configureStore({
   reducer: {

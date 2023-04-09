@@ -1,18 +1,20 @@
 import BotonFavorito from "../botones/boton-favorito.componente";
 import "./tarjeta-personaje.css";
 import { useAppSelector } from "../../redux/hooks";
+import {Character} from '../../reducers/characterGallery'
+
+
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes.
  *
- * Deberás agregar las propiedades necesarias para mostrar los datos de los personajes
- *
- *
- * @returns un JSX element
+ * @param {Object} props - Propiedades del componente
+ * @param {Character} props.character - Objeto que contiene los datos del personaje
+ * @returns un JSX element que representa la tarjeta de personaje
  */
-
-const TarjetaPersonaje = ({ character }) => {
+const TarjetaPersonaje = ({ character }: { character: Character }) => {
   const favoritos = useAppSelector((state) => state.gallery.favoritesList);
   const esFavorito = favoritos.find(favorito => favorito.id === character.id);
+
 
   return (
     <div className="tarjeta-personaje">
@@ -22,7 +24,7 @@ const TarjetaPersonaje = ({ character }) => {
         <BotonFavorito
         favorite={character.id}
         esFavorito={esFavorito? true:false}
-        onClick={character}
+        characterStore={character}
         />
       </div>
     </div>

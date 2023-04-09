@@ -1,3 +1,4 @@
+import { Character } from "../../reducers/characterGallery";
 import "./grilla-personajes.css";
 import TarjetaPersonaje from "./tarjeta-personaje.componente";
 
@@ -10,12 +11,15 @@ import TarjetaPersonaje from "./tarjeta-personaje.componente";
  * @returns un JSX element
  */
 
+interface GrillaPersonajesProps {
+  characters: Character[];
+}
 
-const GrillaPersonajes = ({characters}) => {
+const GrillaPersonajes = ({characters}: GrillaPersonajesProps) => {
 
   return (
     <div className="grilla-personajes">
-      {characters?.map((character) => (
+      {characters?.map((character: Character) => (
         <TarjetaPersonaje key={character.id} character={character} />
       ))}
     </div>

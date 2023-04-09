@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-interface Character {
+export interface Character {
     id: number,
     name: string,
     gender: string,
@@ -15,8 +15,8 @@ interface Character {
 interface initialType {
     characters: Character[]
     loading: boolean
-    favorite: number[]
     favoritesList: Character[]
+    inputSearch: string
 }
 
 export const getCharacters = createAsyncThunk(
@@ -27,20 +27,21 @@ export const getCharacters = createAsyncThunk(
         return parseRes.results
     }
 )
-export const getCharactersById = createAsyncThunk(
-    'gallery/character',
-    async (ids: number) => {
-        const res = await fetch(`https://rickandmortyapi.com/api/character/${ids}`)
-        const parseRes = await res.json()
-        return parseRes.results
+
+export const getFilteredCharacters = createAsyncThunk(
+    'gallery/filteredChars',
+    async (name: string) => {
+        const respuesta = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}`);
+        const parseRespuesta = await respuesta.json();
+        return parseRespuesta.results;
     }
-)
+);
 
 const initialState: initialType = {
     characters: [],
     loading: false,
-    favorite: [],
-    favoritesList: []
+    favoritesList: [],
+    inputSearch: ""
 }
 
 const characterGallery = createSlice({
@@ -57,6 +58,13 @@ const characterGallery = createSlice({
         deleteFavorites: (state) => {
             state.favoritesList = initialState.favoritesList;
         },
+        searchCharacter: (state, action) => {
+            state.inputSearch = action.payload;
+        },
+        deleteCharacter: (state) => {
+            state.inputSearch = initialState.inputSearch;
+        }
+
     },
     extraReducers: (builder) => {
         builder
@@ -70,10 +78,19 @@ const characterGallery = createSlice({
             .addCase(getCharacters.rejected, (state, action) => {
                 state.loading = false
             })
+            .addCase(getFilteredCharacters.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(getFilteredCharacters.fulfilled, (state, action) => {
+                state.loading = false
+                state.characters = action.payload
+            })
+            .addCase(getFilteredCharacters.rejected, (state, action) => {
+                state.loading = false
+            })
 
-        
     }
 })
 
-export const { toggleFavorite, deleteFavorites} = characterGallery.actions;
+export const { toggleFavorite, deleteFavorites,searchCharacter,deleteCharacter} = characterGallery.actions;
 export default characterGallery.reducer
